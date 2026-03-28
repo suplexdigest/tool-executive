@@ -40,7 +40,4 @@ export const CATEGORIES: Category[] = [
   { slug: "plumbing", name: "Plumbing & HVAC", tagline: "Keep it flowing", icon: "home" },
   { slug: "safety", name: "Safety & PPE", tagline: "Come home in one piece", icon: "sparkles" },
   { slug: "storage", name: "Storage & Organization", tagline: "A place for everything", icon: "home" },
-  { slug: "outdoor", name: "Outdoor & Landscape", tagline: "Tame the wild", icon: "mountain" },
-  { slug: "measuring", name: "Measuring & Layout", tagline: "Measure twice, buy once", icon: "sparkles" },
-  { slug: "cool", name: "Cool & Unusual", tagline: "Tools you didn't know existed", icon: "sparkles" },
 ];
