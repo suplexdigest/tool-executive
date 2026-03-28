@@ -15,10 +15,6 @@ function shuffleArray<T>(arr: T[]): T[] {
   return shuffled;
 }
 
-function parsePrice(price: string): number {
-  return parseFloat(price.replace(/[^0-9.]/g, "")) || 0;
-}
-
 function deduplicateById(products: Product[]): Product[] {
   const seen = new Set<string>();
   return products.filter((p) => {
@@ -47,20 +43,9 @@ export default function InfiniteProductFeed({ filters }: { filters: Filters }) {
       );
     }
 
-    if (filters.priceRange.max !== Infinity || filters.priceRange.min > 0) {
-      list = list.filter((p) => {
-        const price = parsePrice(p.price);
-        return price >= filters.priceRange.min && price <= filters.priceRange.max;
-      });
-    }
-
     list = deduplicateById(list);
 
-    if (filters.sort === "price-asc") {
-      list = [...list].sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
-    } else if (filters.sort === "price-desc") {
-      list = [...list].sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
-    } else if (filters.sort === "name-asc") {
+    if (filters.sort === "name-asc") {
       list = [...list].sort((a, b) => a.name.localeCompare(b.name));
     } else {
       list = shuffleArray(list);
@@ -72,7 +57,7 @@ export default function InfiniteProductFeed({ filters }: { filters: Filters }) {
   const [items, setItems] = useState<Product[]>([]);
   const [page, setPage] = useState(0);
   const [allLoaded, setAllLoaded] = useState(false);
-  const pageSize = 12;
+  const pageSize = 20;
 
   useEffect(() => {
     setItems(filtered.slice(0, pageSize));
@@ -126,7 +111,7 @@ export default function InfiniteProductFeed({ filters }: { filters: Filters }) {
       <p className="mb-4 text-xs text-muted">
         {filtered.length} tool{filtered.length !== 1 ? "s" : ""}
       </p>
-      <div className="grid gap-3 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+      <div className="flex flex-col gap-2.5">
         {items.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
