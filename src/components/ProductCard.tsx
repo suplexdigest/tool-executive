@@ -1,26 +1,40 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Product } from "@/data/products";
 
 export default function ProductCard({ product }: { product: Product }) {
+  const [imgError, setImgError] = useState(false);
+  const showImage = product.image && !imgError;
+
   return (
     <Link
       href={`/product/${product.id}`}
       className="group block overflow-hidden rounded-xl border border-border bg-surface transition-all duration-300 hover:border-orange/40 hover:shadow-lg hover:shadow-orange/5 sm:rounded-2xl"
     >
       <div className="relative aspect-square overflow-hidden bg-zinc-900">
-        <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 p-4">
-          <span className="text-5xl font-black text-orange/80 sm:text-6xl">
-            {product.brand.charAt(0)}
-          </span>
-          <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-orange/60">
-            {product.brand}
-          </p>
-          <p className="mt-1 text-[10px] uppercase tracking-wider text-muted/50">
-            {product.category.replace(/-/g, " ")}
-          </p>
-        </div>
+        {showImage ? (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 p-4">
+            <span className="text-5xl font-black text-orange/80 sm:text-6xl">
+              {product.brand.charAt(0)}
+            </span>
+            <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-orange/60">
+              {product.brand}
+            </p>
+            <p className="mt-1 text-[10px] uppercase tracking-wider text-muted/50">
+              {product.category.replace(/-/g, " ")}
+            </p>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         <div className="absolute bottom-2 left-2 right-2 sm:bottom-3 sm:left-3 sm:right-3">
           <p className="text-[10px] font-semibold uppercase tracking-widest text-orange sm:text-xs">
