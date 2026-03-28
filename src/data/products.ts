@@ -18,9 +18,14 @@ export type Product = {
 };
 
 export const AMAZON_TAG = "hookandhull20-20";
+export const EBAY_CAMPAIGN_ID = "5339145399";
 
 export function amzn(keywords: string): string {
   return `https://www.amazon.com/s?k=${encodeURIComponent(keywords)}&tag=${AMAZON_TAG}`;
+}
+
+export function ebay(keywords: string): string {
+  return `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(keywords)}&mkcid=1&mkrid=711-53200-19255-0&campid=${EBAY_CAMPAIGN_ID}&toolid=10001`;
 }
 
 export const CATEGORIES: Category[] = [

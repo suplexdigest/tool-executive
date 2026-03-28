@@ -67,7 +67,7 @@ export default function Footer() {
             brands are property of their respective owners.
           </p>
           <p className="mt-1">
-            As an Amazon Associate, we earn from qualifying purchases. See our{" "}
+            As an Amazon Associate and eBay Partner, we earn from qualifying purchases. See our{" "}
             <Link href="/disclaimer" className="text-orange hover:underline">disclaimer</Link> for details.
           </p>
         </div>

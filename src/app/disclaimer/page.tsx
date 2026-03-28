@@ -18,13 +18,13 @@ export default function DisclaimerPage() {
           <p className="text-xs">Last updated: March 19, 2026</p>
 
           <section>
-            <h2 className="mb-2 text-lg font-bold text-foreground">Amazon Associates Disclosure</h2>
+            <h2 className="mb-2 text-lg font-bold text-foreground">Affiliate Disclosure</h2>
             <p>
-              ToolExecutive.com is a participant in the Amazon Services LLC Associates Program,
-              an affiliate advertising program designed to provide a means for sites to earn
-              advertising fees by advertising and linking to Amazon.com. When you click on product
-              links and make a purchase, we may receive a small commission at no additional cost
-              to you.
+              ToolExecutive.com is a participant in the Amazon Services LLC Associates Program
+              and the eBay Partner Network, affiliate advertising programs designed to provide a
+              means for sites to earn advertising fees by advertising and linking to Amazon.com
+              and eBay.com. When you click on product links and make a purchase, we may receive
+              a small commission at no additional cost to you.
             </p>
           </section>
 
@@ -43,7 +43,7 @@ export default function DisclaimerPage() {
             <p>
               Product prices and availability are subject to change. Prices displayed on
               Tool Executive are approximate and may not reflect the current price at the time of
-              purchase. Always verify pricing on Amazon before completing a purchase.
+              purchase. Always verify pricing on Amazon or eBay before completing a purchase.
             </p>
           </section>
 

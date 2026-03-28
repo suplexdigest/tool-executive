@@ -1,4 +1,5 @@
 import { ALL_PRODUCTS as PRODUCTS } from "@/data/all-products";
+import { ebay } from "@/data/products";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -69,7 +70,7 @@ export default async function ProductPage({
               {product.name}
             </h1>
             <p className="mt-2 text-lg font-bold text-orange sm:mt-3 sm:text-xl">
-              View price on Amazon
+              Compare prices
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted sm:mt-4 sm:text-base">
               {product.description}
@@ -86,20 +87,33 @@ export default async function ProductPage({
               ))}
             </div>
 
-            <a
-              href={product.affiliateUrl}
-              target="_blank"
-              rel="noopener noreferrer nofollow sponsored"
-              className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-orange px-6 py-3.5 text-base font-bold text-white transition-colors hover:bg-orange-light sm:mt-8 sm:py-4 sm:text-lg"
-            >
-              Shop on Amazon
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
+            <div className="mt-6 flex flex-col gap-3 sm:mt-8">
+              <a
+                href={product.affiliateUrl}
+                target="_blank"
+                rel="noopener noreferrer nofollow sponsored"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-orange px-6 py-3.5 text-base font-bold text-white transition-colors hover:bg-orange-light sm:py-4 sm:text-lg"
+              >
+                Shop on Amazon
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+              <a
+                href={ebay(`${product.brand} ${product.name}`)}
+                target="_blank"
+                rel="noopener noreferrer nofollow sponsored"
+                className="flex w-full items-center justify-center gap-2 rounded-xl border border-orange/30 bg-surface px-6 py-3.5 text-base font-bold text-orange transition-colors hover:bg-orange/10 sm:py-4 sm:text-lg"
+              >
+                Shop on eBay
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
 
             <p className="mt-3 text-center text-[10px] text-muted sm:text-xs">
-              As an Amazon Associate, we earn from qualifying purchases.
+              As an Amazon Associate and eBay Partner, we earn from qualifying purchases.
               Price and availability subject to change.
             </p>
           </div>
