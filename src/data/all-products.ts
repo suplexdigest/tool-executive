@@ -1,4 +1,4 @@
 import { NEW_PRODUCTS } from "./new-products";
 
-// All products — 983 curated tools with Amazon affiliate links
+// All products — 251 verified tools with real Amazon affiliate links
 export const ALL_PRODUCTS = [...NEW_PRODUCTS];
