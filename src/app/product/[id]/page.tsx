@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ProductPageClient from "./ProductPageClient";
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ id: p.id }));
@@ -56,7 +57,9 @@ export default async function ProductPage({
         </Link>
 
         <article>
-          <p className="text-xs font-semibold uppercase tracking-widest text-orange sm:text-sm">
+          <ProductPageClient product={product} />
+
+          <p className="mt-6 text-xs font-semibold uppercase tracking-widest text-orange sm:text-sm">
             {product.brand} &middot; {product.category.replace(/-/g, " ")}
           </p>
           <h1 className="mt-2 text-2xl font-black leading-tight sm:text-3xl md:text-4xl">
