@@ -1,45 +1,48 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { Product } from "@/data/products";
 
-function getAsinFromUrl(url: string): string {
-  const match = url.match(/\/dp\/([A-Z0-9]+)/i);
-  return match ? match[1] : "";
+const BRAND_COLORS: Record<string, string> = {
+  Festool: "from-emerald-900/40 to-emerald-950/60",
+  "Snap-on": "from-red-900/40 to-red-950/60",
+  SawStop: "from-amber-900/40 to-amber-950/60",
+  Hilti: "from-red-900/40 to-red-950/60",
+  Milwaukee: "from-red-900/40 to-red-950/60",
+  DeWalt: "from-yellow-900/40 to-yellow-950/60",
+  Makita: "from-teal-900/40 to-teal-950/60",
+  Bosch: "from-blue-900/40 to-blue-950/60",
+  Klein: "from-orange-900/40 to-orange-950/60",
+  Knipex: "from-blue-900/40 to-blue-950/60",
+  Wera: "from-green-900/40 to-green-950/60",
+  Stanley: "from-yellow-900/40 to-yellow-950/60",
+  Lincoln: "from-red-900/40 to-red-950/60",
+  Miller: "from-blue-900/40 to-blue-950/60",
+  Caterpillar: "from-yellow-900/40 to-yellow-950/60",
+  "John Deere": "from-green-900/40 to-green-950/60",
+  Ingersoll: "from-green-900/40 to-green-950/60",
+};
+
+function getBrandGradient(brand: string): string {
+  for (const [key, val] of Object.entries(BRAND_COLORS)) {
+    if (brand.toLowerCase().includes(key.toLowerCase())) return val;
+  }
+  return "from-zinc-800/60 to-zinc-900/80";
 }
 
 export default function ProductCard({ product }: { product: Product }) {
-  const [imgError, setImgError] = useState(false);
-  const asin = getAsinFromUrl(product.affiliateUrl);
-  const imageUrl = asin
-    ? `https://images.amazon.com/images/P/${asin}.01._SCLZZZZZZZ_SX300_.jpg`
-    : "";
-
   return (
     <Link
       href={`/product/${product.id}`}
       className="group flex flex-col overflow-hidden rounded-xl border border-border bg-surface transition-all duration-200 hover:border-orange/40 hover:shadow-md hover:shadow-orange/5"
     >
-      <div className="flex h-44 items-center justify-center overflow-hidden bg-zinc-800/50 p-4 sm:h-52">
-        {imageUrl && !imgError ? (
-          <img
-            src={imageUrl}
-            alt={product.name}
-            className="max-h-full max-w-full object-contain transition-transform group-hover:scale-105"
-            loading="lazy"
-            onError={() => setImgError(true)}
-          />
-        ) : (
-          <div className="flex flex-col items-center justify-center">
-            <span className="text-4xl font-black text-orange/60">
-              {product.brand.charAt(0)}
-            </span>
-            <p className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-orange/40">
-              {product.brand}
-            </p>
-          </div>
-        )}
+      <div className={`flex h-32 flex-col items-center justify-center bg-gradient-to-br ${getBrandGradient(product.brand)} p-4`}>
+        <span className="text-5xl font-black text-orange/70 transition-transform group-hover:scale-110">
+          {product.brand.charAt(0)}
+        </span>
+        <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-orange/50">
+          {product.brand}
+        </p>
       </div>
       <div className="flex flex-1 flex-col p-4 sm:p-5">
         <p className="text-[10px] font-semibold uppercase tracking-widest text-orange sm:text-xs">
