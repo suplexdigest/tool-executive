@@ -3,17 +3,26 @@
 import { useState } from "react";
 import { Product } from "@/data/products";
 
+function getAsinFromUrl(url: string): string {
+  const match = url.match(/\/dp\/([A-Z0-9]+)/i);
+  return match ? match[1] : "";
+}
+
 export default function ProductPageClient({ product }: { product: Product }) {
   const [imgError, setImgError] = useState(false);
-  const showImage = product.image && !imgError;
+  const asin = getAsinFromUrl(product.affiliateUrl);
+  const imageUrl = asin
+    ? `https://images.amazon.com/images/P/${asin}.01._SCLZZZZZZZ_SX500_.jpg`
+    : "";
+  const showImage = (product.image || imageUrl) && !imgError;
 
   return (
     <div className="relative aspect-square overflow-hidden rounded-xl bg-zinc-900 sm:rounded-2xl">
       {showImage ? (
         <img
-          src={product.image}
+          src={product.image || imageUrl}
           alt={product.name}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain p-6"
           onError={() => setImgError(true)}
         />
       ) : (

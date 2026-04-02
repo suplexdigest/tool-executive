@@ -1,4 +1,4 @@
-import { SONNET_PRODUCTS } from "./batch-sonnet";
+import { NEW_PRODUCTS } from "./new-products";
 
-// All products — 907 curated tools with Amazon + eBay affiliate links
-export const ALL_PRODUCTS = [...SONNET_PRODUCTS];
+// All products — 983 curated tools with Amazon affiliate links
+export const ALL_PRODUCTS = [...NEW_PRODUCTS];

@@ -111,7 +111,7 @@ export default function InfiniteProductFeed({ filters }: { filters: Filters }) {
       <p className="mb-4 text-xs text-muted">
         {filtered.length} tool{filtered.length !== 1 ? "s" : ""}
       </p>
-      <div className="flex flex-col gap-2.5">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 sm:gap-4">
         {items.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
